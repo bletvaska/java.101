@@ -30,7 +30,7 @@ Budeme potrebovať nainštalovať nasledovný softvér:
     * spustiť inštaláciu príkazom:
 
         ```bash
-        $ choco install cmder intellijidea-community temurin temurinjre gradle
+        $ choco install -y cmder intellijidea-community temurin temurinjre gradle
         ```
 
 * otestovať inštaláciu príkazmi:
