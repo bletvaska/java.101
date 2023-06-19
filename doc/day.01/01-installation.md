@@ -38,6 +38,8 @@ Budeme potrebovať nainštalovať nasledovný softvér:
     ```bash
     $ java -version
     $ javac -version
+    $ gradle --version
+    $ git version
     ```
 
 ## Linux OS
