@@ -33,7 +33,7 @@ Budeme potrebovať nainštalovať nasledovný softvér:
         $ choco install -y cmder intellijidea-community temurin temurinjre gradle
         ```
 
-* otestovať inštaláciu príkazmi:
+* po nainštalovaní je potrebné spustiť nový terminál a otestovať inštaláciu týmito príkazmi:
 
     ```bash
     $ java -version
