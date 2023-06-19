@@ -20,7 +20,7 @@ java {
 }
 
 application {
-    mainClassName = "sk.tuke.kpi.gamelib.framework.Main"
+    mainClass.set( "sk.tuke.kpi.gamelib.framework.Main")
 }
 
 dependencies {
