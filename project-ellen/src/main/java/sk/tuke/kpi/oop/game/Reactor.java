@@ -33,16 +33,20 @@ public class Reactor extends AbstractActor {
         return this.damage;
     }
 
-    public void increaseTemperature(int increment){
+    public void increaseTemperature(int increment) {
         this.temperature = this.temperature + increment;
 
-        // when temperature is above 2000, then damage increases
-        if(this.temperature >= 2000 && this.temperature <= 6000) {
-            int damage = this.temperature / 40 - 50;
+        // when temperature is above 2000 and below 6000, then damage increases
+        if (this.temperature >= 2000) {
+            if (this.temperature >= 6000) {
+                this.damage = 100;
+            } else {
+                int damage = this.temperature / 40 - 50;
 
-            // update when current damage is bigger than previous
-            if(this.damage < damage){
-                this.damage = damage;
+                // update when current damage is bigger than previous
+                if (this.damage < damage) {
+                    this.damage = damage;
+                }
             }
         }
     }
