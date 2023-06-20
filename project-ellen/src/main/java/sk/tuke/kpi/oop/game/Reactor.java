@@ -38,9 +38,11 @@ public class Reactor extends AbstractActor {
 
         // when temperature is above 2000 and below 6000, then damage increases
         if (this.temperature >= 2000) {
+            // update damage
             if (this.temperature >= 6000) {
                 this.damage = 100;
             } else {
+
                 int damage = this.temperature / 40 - 50;
 
                 // update when current damage is bigger than previous
@@ -48,6 +50,29 @@ public class Reactor extends AbstractActor {
                     this.damage = damage;
                 }
             }
+
+            // update animation
+            if (this.temperature >= 6000) {
+                setAnimation(
+                    new Animation("sprites/reactor_broken.png",
+                        80, 80, 0.1f,
+                        Animation.PlayMode.LOOP_PINGPONG
+                    )
+                );
+                return;
+            }
+
+            if (this.temperature >= 4000) {
+                setAnimation(
+                    new Animation("sprites/reactor_hot.png",
+                        80, 80, 0.05f,
+                        Animation.PlayMode.LOOP_PINGPONG
+                    )
+                );
+                return;
+            }
+
+            setAnimation(this.normalAnimation);
         }
     }
 }
