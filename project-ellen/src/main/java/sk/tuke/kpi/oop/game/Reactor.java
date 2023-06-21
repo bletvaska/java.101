@@ -103,4 +103,8 @@ public class Reactor extends AbstractActor {
             setAnimation(this.normalAnimation);
         }
     }
+
+    public void repairWith(Hammer hammer){
+
+    }
 }
