@@ -52,35 +52,47 @@ public class Reactor extends AbstractActor {
     public void increaseTemperature(int increment) {
         this.temperature = this.temperature + increment;
 
-        if(this.damage == 100){
+        if (this.damage == 100) {
             return;
         }
 
-        // update animation
-        // if temperature is >= 6000, then broken show reactor
-        if (this.temperature >= 6000) {
-            setAnimation(this.brokenAnimation);
-
-        // if (4000 <= temperature < 6000), then show hot reactor
-        } else if (this.temperature >= 4000) {
-            setAnimation(this.hotAnimation);
-
-        // otherwise show normal reactor
-        } else {
-            setAnimation(this.normalAnimation);
-        }
+        updateAnimation();
 
         // update damage
-        if(this.temperature >= 2000) {
-            if(this.temperature >= 6000){
+        if (this.temperature >= 2000) {
+            if (this.temperature >= 6000) {
                 this.damage = 100;
-            }else{
+            } else {
                 int damage = (this.temperature / 40) - 50;
-                if(this.damage < damage){
+                if (this.damage < damage) {
                     this.damage = damage;
                 }
             }
         }
+    }
 
+    public void decreaseTemperature(int decrement) {
+        this.temperature = this.temperature - decrement;
+
+        if (this.damage == 100) {
+            return;
+        }
+
+        updateAnimation();
+    }
+
+    public void updateAnimation() {
+        // if temperature is >= 6000, then broken show reactor
+        if (this.temperature >= 6000) {
+            setAnimation(this.brokenAnimation);
+
+            // if (4000 <= temperature < 6000), then show hot reactor
+        } else if (this.temperature >= 4000) {
+            setAnimation(this.hotAnimation);
+
+            // otherwise show normal reactor
+        } else {
+            setAnimation(this.normalAnimation);
+        }
     }
 }
