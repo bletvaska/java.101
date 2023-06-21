@@ -37,6 +37,7 @@ public class Reactor extends AbstractActor {
         this.temperature = this.temperature + increment;
 
         // update animation
+        // if temperature is >= 6000, then broken show reactor
         if (this.temperature >= 6000) {
             Animation animation = new Animation(
                 "sprites/reactor_broken.png",
@@ -45,6 +46,7 @@ public class Reactor extends AbstractActor {
             );
             setAnimation(animation);
 
+        // if (4000 <= temperature < 6000), then show hot reactor
         } else if (this.temperature >= 4000) {
             Animation animation = new Animation(
                 "sprites/reactor_hot.png",
@@ -53,6 +55,7 @@ public class Reactor extends AbstractActor {
             );
             setAnimation(animation);
 
+        // otherwise show normal reactor
         } else {
             setAnimation(this.normalAnimation);
         }
