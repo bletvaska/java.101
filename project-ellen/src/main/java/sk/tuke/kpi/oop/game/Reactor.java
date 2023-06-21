@@ -36,6 +36,33 @@ public class Reactor extends AbstractActor {
     public void increaseTemperature(int increment) {
         this.temperature = this.temperature + increment;
 
+        // if reactor is broken already, do nothing
+        if(this.damage == 100){
+            return;
+        }
+
+        // update animation
+        // set broken reactor, when temp is over 6000C
+        if(this.temperature >= 6000){
+            setAnimation(
+                new Animation("sprites/reactor_broken.png",
+                    80, 80, 0.1f,
+                    Animation.PlayMode.LOOP_PINGPONG
+                )
+            );
+        // set hot reactor, when temp is over 4000C
+        }else if(this.temperature >= 4000){
+            setAnimation(
+                new Animation("sprites/reactor_hot.png",
+                    80, 80, 0.05f,
+                    Animation.PlayMode.LOOP_PINGPONG
+                )
+            );
+        // otherwise use normal animation
+        }else{
+            setAnimation(normalAnimation);
+        }
+
         // when temperature is above 2000 and below 6000, then damage increases
         if (this.temperature >= 2000) {
             // update damage
@@ -51,28 +78,6 @@ public class Reactor extends AbstractActor {
                 }
             }
 
-            // update animation
-            if (this.temperature >= 6000) {
-                setAnimation(
-                    new Animation("sprites/reactor_broken.png",
-                        80, 80, 0.1f,
-                        Animation.PlayMode.LOOP_PINGPONG
-                    )
-                );
-                return;
-            }
-
-            if (this.temperature >= 4000) {
-                setAnimation(
-                    new Animation("sprites/reactor_hot.png",
-                        80, 80, 0.05f,
-                        Animation.PlayMode.LOOP_PINGPONG
-                    )
-                );
-                return;
-            }
-
-            setAnimation(this.normalAnimation);
         }
     }
 }

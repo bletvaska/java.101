@@ -56,6 +56,10 @@ Trieda `AbstractActor`, ktorú použijete ako rodičovskú triedu novej triedy `
 > Keď budete potrebovať importovať nejakú triedu z poskytnutej knižnice a prostredie vám ponúkne na výber z niekoľkých možných tried s rovnakým krátkym názvom, tú správnu možnosť identifikujete podľa prefixu balíka `sk.tuke.kpi.gamelib`.
 
 ```java
+package sk.tuke.kpi.oop.game;
+
+import sk.tuke.kpi.gamelib.framework.AbstractActor;
+
 public class Reactor extends AbstractActor {
 }
 ```
@@ -82,6 +86,8 @@ Pri tvorbe členských premenných nezabúdajte na to, že nechceme, aby boli vo
 > V hernej knižnici, ktorú používame, budeme pracovať s objektami typu [`Animation`][animation-docs], ktoré je možné rovnako použiť na jednoduché statické obrázky, ako aj na obrázky obsahujúce snímky animácie sprite-u.
 
 ```java
+import sk.tuke.kpi.gamelib.graphics.Animation;
+
 public class Reactor extends AbstractActor {
     private int temperature;
     private int damage;
