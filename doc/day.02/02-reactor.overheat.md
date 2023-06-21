@@ -27,14 +27,14 @@ Tvojou úlohou je vytvoriť triedu, ktorá bude modelovať reaktor v prostredí 
 ![Diagram tried, ktorý vyjadruje vzťah triedy `Reactor` s triedou `AbstractActor`.](images/reactor.and.abstractactor.svg)
 
 
-> Úloha:
-> Vytvorte v projekte Java balík `sk.tuke.kpi.oop.game`.
+### Úloha
+Vytvorte v projekte Java balík `sk.tuke.kpi.oop.game`.
 
 Keďže projekt používa nástroj _Gradle_, je potrebné dodržať jeho [konvenciu na umiestňovanie Java zdrojových súborov](https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_project_layout), a preto je potrebné vytvoriť tento balík v adresári `src/main/java`.
 
 
-> Úloha:
-> V balíku `sk.tuke.kpi.oop.game` vytvorte triedu `Reactor`, ktorá bude potomkom triedy `AbstractActor`.
+### Úloha
+V balíku `sk.tuke.kpi.oop.game` vytvorte triedu `Reactor`, ktorá bude potomkom triedy `AbstractActor`.
 
 Zápis, ktorý v jazyku Java hovorí o tom, že trieda `A` je potomkom triedy `B`, je nasledovný:
 
@@ -55,8 +55,14 @@ Trieda `AbstractActor`, ktorú použijete ako rodičovskú triedu novej triedy `
 > Poznámka:
 > Keď budete potrebovať importovať nejakú triedu z poskytnutej knižnice a prostredie vám ponúkne na výber z niekoľkých možných tried s rovnakým krátkym názvom, tú správnu možnosť identifikujete podľa prefixu balíka `sk.tuke.kpi.gamelib`.
 
-> Úloha:
-> Do triedy `Reactor` pridajte členské premenné, ktoré budú reprezentovať stav reaktora: _aktuálnu teplotu_, _poškodenie_ a _animáciu_ reprezentujúcu reaktor.
+```java
+public class Reactor extends AbstractActor {
+}
+```
+
+
+### Úloha
+Do triedy `Reactor` pridajte členské premenné, ktoré budú reprezentovať stav reaktora: _aktuálnu teplotu_, _poškodenie_ a _animáciu_ reprezentujúcu reaktor.
 
 Jedná sa o nasledovné členské premenné:
 
@@ -75,9 +81,17 @@ Pri tvorbe členských premenných nezabúdajte na to, že nechceme, aby boli vo
 >
 > V hernej knižnici, ktorú používame, budeme pracovať s objektami typu [`Animation`][animation-docs], ktoré je možné rovnako použiť na jednoduché statické obrázky, ako aj na obrázky obsahujúce snímky animácie sprite-u.
 
+```java
+public class Reactor extends AbstractActor {
+    private int temperature;
+    private int damage;
+    private Animation normalAnimation;
+}
+```
 
-> Úloha:
-> Vytvorte _bezparametrický_ konštruktor triedy `Reactor`, v ktorom novovytváranému objektu inicializujete premenné reprezentujúce jeho stav.
+
+### Úloha
+Vytvorte _bezparametrický_ konštruktor triedy `Reactor`, v ktorom novovytváranému objektu inicializujete premenné reprezentujúce jeho stav.
 
 V rámci inicializácie objektu nastavte:
 
@@ -105,9 +119,24 @@ setAnimation(normalAnimation);
 > Poznámka:
 > Dokumentáciu k jednotlivým triedam, ich konštruktorom a metódam môžete získať priamo v rámci vývojového prostredia umiestnením textového kurzora na meno požadovaného elementu a použitím skratky `Ctrl+Q`. Táto skratka je dostupná aj pri prechádzaní zoznamom možností ponuky automatického dopĺňania kódu (`Ctrl+Space`). Dokumentácia je tiež dostupná [na samostatnej stránke](http://kpi.pages.kpi.fei.tuke.sk/objektove-programovanie/gamelib "Gamelib dokumentácia").
 
+```java
+public Reactor() {
+    this.temperature = 0;
+    this.state = false;
+    this.damage = 0;
+    this.normalAnimation = new Animation(
+        "sprites/reactor_on.png",
+        80, 80,
+        0.1F,
+        Animation.PlayMode.LOOP_PINGPONG
+    );
+    setAnimation(this.normalAnimation);
+}
+```
 
-> Úloha:
-> Overte správnosť svojej implementácie vytvorením inštancie reaktora a jeho vložením do hernej scény.
+
+### Úloha
+Overte správnosť svojej implementácie vytvorením inštancie reaktora a jeho vložením do hernej scény.
 
 Pokiaľ ste postupovali správne, po spustení projektu (`Shift+F10`) budete vedieť pomocou inšpektora vytvoriť inštanciu triedy `Reactor` a umiestniť ju do hry.
 
@@ -117,37 +146,23 @@ Pokiaľ ste postupovali správne, po spustení projektu (`Shift+F10`) budete ved
 > V prípade, že sa niekomu nezobrazí trieda `Reactor` v diagrame tried v inšpektore, je potrebné overiť, či vytvorili triedu v správnom balíku a či dedí od triedy `AbstractActor`. Inšpektor je nastavený tak, že zobrazí len triedy z balíka `sk.tuke.kpi` (a v ňom vnorených balíkov), ktoré sú priamo alebo zdedene anotované anotáciou `Inspectable` (`AbstractActor` má túto anotáciu).
 
 
-> Úloha:
-> Vytvorte metódy `getTemperature()` a `getDamage()`, pomocou ktorých budete vedieť získať hodnotu aktuálnej teploty jadra a jeho poškodenia.
+### Úloha
+Vytvorte metódy `getTemperature()` a `getDamage()`, pomocou ktorých budete vedieť získať hodnotu aktuálnej teploty jadra a jeho poškodenia.
 
 Tieto metódy poskytnú prístup na _čítanie_ hodnôt teploty a poškodenia. Samozrejme, ich viditeľnosť je potrebné nastaviť na `public`. Následne viete opäť skontrolovať ich funkcionalitu pomocou inšpektora.
 
 > Poznámka:
 > Všimnite si, že metóda na získanie hodnoty členskej premennej `temperature` sa volá `getTemperature()` a pre `damage` sa volá `getDamage()`. Takéto pomenovanie metód na získanie hodnôt premenných pridaním predpony `get` k názvu premennej je konvenčné a budeme ho často využívať. Výsledná metóda sa zvykne "hovorovo" nazývať aj _getter_.
 
+```java
+public int getTemperature() {
+    return temperature;
+}
 
-## Krok: Intermezzo - Method Overloading {pretazenie}
-
-Teraz, keď už vieš, ako vytvoriť triedu a jej metódy, ukážeme ti jednu z užitočných vlastností _polymorfizmu_ (ku ktorému sa ešte viackrát vrátime). Tou vlastnosťou je _preťaženie metód_ (anglicky _method overloading_).
-
-
-> Úloha:
-> V balíku `sk.tuke.kpi.oop.game` vytvorte triedu `Computer` ako potomka triedy `AbstractActor`.
-
-Ako animáciu použite sprite obrázok [sprite-link:computer].
-
-![Animácia `computer.png` (rozmery sprite-u: _80x48_, trvanie snímku: _0.2_)](images/computer.png)
-
-
-> Úloha:
-> V triede `Computer` vytvorte metódy pre vykonanie základných aritmetických operácií `add()` a `sub()` pre číselné údajové typy `int` a `float`.
-
-Každá z týchto metód bude mať 2 parametre rovnakého typu pre operandy danej aritmetickej operácie. Keďže raz to budú parametre typu `int`, raz `float`, implementáciou takýchto metód nastane ich tzv. _preťaženie_.
-
-> Poznámka:
-> To, ktorá konkrétna metóda z dvoch možných pre meno `add` (a taktiež `sub`) bude zavolaná, je určené staticky počas kompilácie na základe typov argumentov dodaných vo volaní metódy.
-
-Implementáciu si môžete overiť po spustení hry pomocou nástroja _Inšpektor_.
+public int getDamage() {
+    return this.damage;
+}
+```
 
 
 ## Krok: Reactor (Over)Heating
@@ -155,8 +170,8 @@ Implementáciu si môžete overiť po spustení hry pomocou nástroja _Inšpekto
 Späť k reaktoru! Získať jeho stav už vieš, teraz sa pozrieme na to, ako jeho stav meniť.
 
 
-> Úloha:
-> Vytvorte metódu `increaseTemperature()`, pomocou ktorej bude možné zvýšiť aktuálnu teplotu jadra reaktora.
+### Úloha
+Vytvorte metódu `increaseTemperature()`, pomocou ktorej bude možné zvýšiť aktuálnu teplotu jadra reaktora.
 
 Táto metóda nebude vracať žiadnu hodnotu a bude mať jeden celočíselný parameter (pomenovaný napr. _increment_), ktorý bude reprezentovať hodnotu, o ktorú sa má aktuálna teplota jadra zvýšiť.
 
@@ -184,9 +199,15 @@ Pri implementovaní metódy však zohľadnite nasledovné skutočnosti:
 > Poznámka:
 > Je výhodné vytvoriť objekty animácií už pri inicializovaní objektu a ich hodnoty uložiť do ďalších členských premenných. Keďže reaktor sa môže nachádzať v niekoľkých stavoch (v našom prípade v troch - stav ok, prehriaty a zničený reaktor), animácie reprezentujúce tento stav sa budú meniť. Ak sa v priebehu hry zmení stav reaktora napr. 50x, znamená to, že pri každej zmene potrebujete načítavať inú animáciu zvlášť - spolu teda 50 načítaní súborov animácií. Ak si však všetky animácie načítate pri inicializácii objektu, načítate spolu iba 3 súbory animácií, ktoré sa už budú používať podľa potreby.
 
+```java
+public void increaseTemperature(int incremenet){
 
-> Úloha:
-> Vytvorte metódu `decreaseTemperature()`, pomocou ktorej bude možné znížiť aktuálnu teplotu jadra reaktora.
+}
+```
+
+
+### Úloha
+Vytvorte metódu `decreaseTemperature()`, pomocou ktorej bude možné znížiť aktuálnu teplotu jadra reaktora.
 
 Táto metóda nebude vracať žiadnu hodnotu a bude mať jeden celočíselný parameter (pomenovaný napr _decrement_), ktorý bude reprezentovať hodnotu, o ktorú sa má aktuálna teplota jadra znížiť. Pozor, zníženie teploty neznižuje poškodenie, ktoré vysoká teplota už spôsobila!
 
@@ -197,14 +218,14 @@ Pri implementovaní metódy zohľadnite nasledovné skutočnosti:
 - Ak teplota jadra pri ochladzovaní klesne na _4000_ stupňov alebo menej, zmeňte animáciu reprezentujúcu stav reaktora na [sprite-link:reactor_on].
 
 
-> Úloha:
-> Vytvorte metódu `updateAnimation()`, ktorá na základe aktuálnej teploty nastaví animáciu reaktora.
+### Úloha
+Vytvorte metódu `updateAnimation()`, ktorá na základe aktuálnej teploty nastaví animáciu reaktora.
 
 Pri pozornom pohľade na metódy `increaseTemperature()` a `decreaseTemperature()` si všimnete, že obe metódy riešia nastavenie správnej animácie reaktora v závislosti na jeho teplote. Takáto duplicita je však zbytočná a komplikuje prípadnú zmenu funkcionality. Preto _refaktorujte_ svoj kód tak, že túto spoločnú funkcionalitu oddelíte do samostatnej metódy `updateAnimation()`.
 
 
-> Úloha:
-> Upravte implementáciu metód `increaseTemperature()` a `decreaseTemperature()` tak, aby ste pre zmenu aktuálnej animácie využili práve vytvorenú metódu `updateAnimation()`.
+### Úloha
+Upravte implementáciu metód `increaseTemperature()` a `decreaseTemperature()` tak, aby ste pre zmenu aktuálnej animácie využili práve vytvorenú metódu `updateAnimation()`.
 
 Po refaktorizácii z predchádzajúcej úlohy nezabudnite zmeniť aj pôvodné metódy, kde sa extrahovaný kód nachádzal, aby vyžívali novú metódu.
 
@@ -212,18 +233,34 @@ Po refaktorizácii z predchádzajúcej úlohy nezabudnite zmeniť aj pôvodné m
 > Metóda `updateAnimation()` reprezentuje len _implementačný detail_ a nie je potrebné (ba dokonca ani žiadúce) aby bola dostupná používateľom objektu reaktora. Skryte preto túto metódu vhodným modifikátorom viditeľnosti.
 
 
-> Úloha:
-> Pomocou _Inšpektora_ umiestnite objekt reaktora do mapy a otestujte správnosť svojej implementácie.
+### Úloha
+Pomocou _Inšpektora_ umiestnite objekt reaktora do mapy a otestujte správnosť svojej implementácie.
 
 ![Pokazený (prehriaty) reaktor](images/alienbreed.02-04.png)
 
-## Krok: Repository
+
+## Krok: Intermezzo - Method Overloading
+
+Teraz, keď už vieš, ako vytvoriť triedu a jej metódy, ukážeme ti jednu z užitočných vlastností _polymorfizmu_ (ku ktorému sa ešte viackrát vrátime). Tou vlastnosťou je _preťaženie metód_ (anglicky _method overloading_).
+
 
 > Úloha:
-> Nahrajte (cez *commit* a *push*) váš zdrojový kód do repozitára na GitHub-e.
+> V balíku `sk.tuke.kpi.oop.game` vytvorte triedu `Computer` ako potomka triedy `AbstractActor`.
 
-Zdrojový kód nahrajte aj v prípade, ak ste nestihli dokončiť všetky úlohy. Rozpracované časti, ktoré by mohli spôsobiť chyby prekladu, odporúčame zakomentovať.
+Ako animáciu použite sprite obrázok [sprite-link:computer].
 
+![Animácia `computer.png` (rozmery sprite-u: _80x48_, trvanie snímku: _0.2_)](images/computer.png)
+
+
+> Úloha:
+> V triede `Computer` vytvorte metódy pre vykonanie základných aritmetických operácií `add()` a `sub()` pre číselné údajové typy `int` a `float`.
+
+Každá z týchto metód bude mať 2 parametre rovnakého typu pre operandy danej aritmetickej operácie. Keďže raz to budú parametre typu `int`, raz `float`, implementáciou takýchto metód nastane ich tzv. _preťaženie_.
+
+> Poznámka:
+> To, ktorá konkrétna metóda z dvoch možných pre meno `add` (a taktiež `sub`) bude zavolaná, je určené staticky počas kompilácie na základe typov argumentov dodaných vo volaní metódy.
+
+Implementáciu si môžete overiť po spustení hry pomocou nástroja _Inšpektor_.
 
 
 ## Doplňujúce úlohy
