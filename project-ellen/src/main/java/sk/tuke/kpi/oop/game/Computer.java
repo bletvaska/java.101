@@ -13,4 +13,12 @@ public class Computer extends AbstractActor {
         );
         setAnimation(animation);
     }
+
+    public int add(int operand1, int operand2){
+        return operand1 + operand2;
+    }
+
+    public int sub(int op1, int op2){
+        return op1 - op2;
+    }
 }
