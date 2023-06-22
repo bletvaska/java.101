@@ -25,6 +25,4 @@ public class Hammer extends AbstractActor {
     public int getUsages(){
         return this.usages;
     }
-
-
 }
