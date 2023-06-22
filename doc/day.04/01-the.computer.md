@@ -1,5 +1,5 @@
 # The Computer
-** O preťažovaní (nie len) počítačov**
+**O preťažovaní (nie len) počítačov**
 
 ## Motivácia
 
