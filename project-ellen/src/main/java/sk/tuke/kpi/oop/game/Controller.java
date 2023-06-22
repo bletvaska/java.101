@@ -4,8 +4,10 @@ import sk.tuke.kpi.gamelib.framework.AbstractActor;
 import sk.tuke.kpi.gamelib.graphics.Animation;
 
 public class Controller extends AbstractActor {
+    private Reactor reactor;
 
-    public Controller(){
+    public Controller(Reactor reactor){
+        this.reactor = reactor;
         Animation animation = new Animation("sprites/switch.png");
         setAnimation(animation);
     }
