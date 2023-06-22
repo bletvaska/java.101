@@ -12,6 +12,7 @@ public class Reactor extends AbstractActor {
     private Animation normalAnimation;
     private Animation brokenAnimation;
     private Animation hotAnimation;
+    private Animation offAnimation;
 
     public Reactor() {
         // init attributes
@@ -36,9 +37,10 @@ public class Reactor extends AbstractActor {
             0.1F,
             Animation.PlayMode.LOOP_PINGPONG
         );
+        this.offAnimation = new Animation("sprites/reactor.png");
 
         // set init reactor animation
-        setAnimation(this.normalAnimation);
+        setAnimation(this.offAnimation);
     }
 
     public int getTemperature() {
@@ -121,7 +123,7 @@ public class Reactor extends AbstractActor {
         // decrease damage by 50 and temperature to 0
         this.damage = this.damage - 50;
 
-        if(this.damage < 0){
+        if (this.damage < 0) {
             this.damage = 0;
         }
 
