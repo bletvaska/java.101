@@ -71,7 +71,7 @@ Trieda bude mať dve metódy:
 - `toggle()` - Metóda bude vedieť zmeniť stav svetla zo zapnutého na vypnuté a naopak, ako vypínač. Svetlo však bude reálne svietiť (jeho animácia bude [sprite-link:light_on]) len v tom prípade, ak bude aj napájané elektrinou.
 - `setElectricityFlow()` - Metóda bude mať jeden parameter typu `boolean`, ktorý bude udávať, či je svetlu elektrina poskytovaná alebo nie.
 
-Ako animáciu zasvieteného svetla použite súbor [sprite-link:light_on] a pre animáciu zhasnutého svetla použite súbor [sprite-link:light_off].
+Ako animáciu zasvieteného svetla použite súbor `light_on.png` a pre animáciu zhasnutého svetla použite súbor `light_off.png`.
 
 ![Animácia `light_on.png` (rozmery obrázka: _16x16_).](images/light_on.png)
 
