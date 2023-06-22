@@ -16,12 +16,12 @@ public class Light extends AbstractActor {
     }
 
     public void toggle(){
+        this.isOn = !this.isOn;
+
         if(this.isOn){
-            this.isOn = false;
-            setAnimation(lightOff);
-        }else{
-            this.isOn = true;
             setAnimation(lightOn);
+        }else{
+            setAnimation(lightOff);
         }
     }
 

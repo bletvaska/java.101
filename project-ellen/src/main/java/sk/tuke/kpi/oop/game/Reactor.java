@@ -13,6 +13,7 @@ public class Reactor extends AbstractActor {
     private Animation brokenAnimation;
     private Animation hotAnimation;
     private Animation offAnimation;
+    private Light light;
 
     public Reactor() {
         // init attributes
@@ -133,7 +134,7 @@ public class Reactor extends AbstractActor {
     }
 
     public void turnOn() {
-        if(this.damage == 100){
+        if (this.damage == 100) {
             return;
         }
         this.state = true;
@@ -142,7 +143,7 @@ public class Reactor extends AbstractActor {
     }
 
     public void turnOff() {
-        if(this.damage == 100){
+        if (this.damage == 100) {
             return;
         }
         this.state = false;
@@ -152,5 +153,9 @@ public class Reactor extends AbstractActor {
 
     public boolean isRunning() {
         return this.state;
+    }
+
+    public void addLight(Light light) {
+        this.light = light;
     }
 }
