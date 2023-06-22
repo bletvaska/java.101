@@ -7,22 +7,26 @@ public class Light extends AbstractActor {
     private Animation lightOn;
     private Animation lightOff;
     private boolean isOn;
+    private boolean isPowered;
 
-    public Light(){
+    public Light() {
         this.isOn = false;
         this.lightOff = new Animation("sprites/light_off.png");
         this.lightOn = new Animation("sprites/light_on.png");
         setAnimation(lightOff);
     }
 
-    public void toggle(){
+    public void toggle() {
         this.isOn = !this.isOn;
 
-        if(this.isOn){
+        if (this.isOn) {
             setAnimation(lightOn);
-        }else{
+        } else {
             setAnimation(lightOff);
         }
     }
 
+    public void setElectricityFlow(boolean isPowered) {
+        this.isPowered = isPowered;
+    }
 }
