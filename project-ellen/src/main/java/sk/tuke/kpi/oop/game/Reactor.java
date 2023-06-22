@@ -130,4 +130,16 @@ public class Reactor extends AbstractActor {
         this.temperature = 0;
         updateAnimation();
     }
+
+    public void turnOn(){
+        this.state = true;
+    }
+
+    public void turnOff(){
+        this.state = false;
+    }
+
+    public boolean isRunning(){
+        return this.state;
+    }
 }
