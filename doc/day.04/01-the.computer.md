@@ -18,6 +18,20 @@ Ako animáciu použite sprite obrázok [sprite-link:computer].
 
 ![Animácia `computer.png` (rozmery sprite-u: _80x48_, trvanie snímku: _0.2_)](images/computer.png)
 
+```java
+public class Computer extends AbstractActor {
+    public Computer() {
+        Animation animation = new Animation(
+            "sprites/computer.png",
+            80, 48,
+            0.1f,
+            Animation.PlayMode.LOOP_PINGPONG
+        );
+        setAnimation(animation);
+    }
+}
+```
+
 
 ### Úloha
 V triede `Computer` vytvorte metódy pre vykonanie základných aritmetických operácií `add()` a `sub()` pre číselné údajové typy `int` a `float`.
@@ -29,3 +43,20 @@ Každá z týchto metód bude mať 2 parametre rovnakého typu pre operandy dane
 
 Implementáciu si môžete overiť po spustení hry pomocou nástroja _Inšpektor_.
 
+```java
+public int add(int operand1, int operand2){
+	return operand1 + operand2;
+}
+
+public float add(float operand1, float operand2){
+	return operand1 + operand2;
+}
+
+public int sub(int op1, int op2){
+	return op1 - op2;
+}
+
+public float sub(float op1, float op2){
+	return op1 - op2;
+}
+```

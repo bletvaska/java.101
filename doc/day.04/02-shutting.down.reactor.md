@@ -19,14 +19,44 @@ To, či je reaktor _zapnutý_ alebo _vypnutý_, reprezentuje jeho _stav_. Z minu
 
 Samozrejme, reaktor môže pracovať len vtedy, keď je zapnutý. Ak nebude zapnutý, nebude možné mu zvyšovať ani znižovať teplotu pomocou jeho metód (nemali by mať efekt). Rovnako zabezpečte, aby reaktor nebol zapnutý automaticky po vytvorení jeho inštancie. Pri pokazení reaktora zabezpečte, aby bol vo vypnutom stave. Urobte potrebné úpravy, aby ste tieto skutočnosti zohľadnili.
 
+```java
+public void turnOn() {
+    if (this.damage == 100) {
+        return;
+    }
+    this.state = true;
+    getAnimation().play();
+    updateAnimation();
+}
+
+public void turnOff() {
+    if (this.damage == 100) {
+        return;
+    }
+    this.state = false;
+    getAnimation().pause();
+    updateAnimation();
+}
+```
+
+
+
 ### Úloha
-Pre reprezentáciu reaktora vo vypnutom stave použite obrázok animácie [sprite-link:reactor]. V prípade, že sa reaktor vypne dôsledkom zničenia, zabezpečte, aby ako jeho animácia ostal nastavený obrázok [sprite-link:reactor_broken].
+Pre reprezentáciu reaktora vo vypnutom stave použite obrázok animácie `reactor.png`. V prípade, že sa reaktor vypne dôsledkom zničenia, zabezpečte, aby ako jeho animácia ostal nastavený obrázok `reactor_broken.png`.
 
 Potrebný objekt animácie si pripravte v konštruktore reaktora, patrične upravte metódu nastavujúcu aktuálnu animáciu a práve vytvorené metódy `turnOn()` a `turnOff()`.
 
 
 ### Úloha
 V triede `Reactor` vytvorte metódu `isRunning()`, ktorá zistí, či je reaktor zapnutý (vráti hodnotu _true_) alebo vypnutý (vráti hodnotu _false_).
+
+```java
+public boolean isRunning() {
+    return this.state;
+}
+```
+
+
 
 
 ## Krok: Gaining Control
