@@ -17,7 +17,7 @@ public class MineField {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.mineCount = mineCount;
-        tiles = new Tile[rowCount][columnCount];
+        this.tiles = new Tile[rowCount][columnCount];
         generate();
     }
 
@@ -27,10 +27,19 @@ public class MineField {
     }
 
     private void generateMines() {
-        var random = new Random();
-        var row = random.nextInt(rowCount);
-        var column = random.nextInt(columnCount);
-        tiles[row][column] = new Mine();
+        Random random = new Random();
+
+        for (int counter = 0; counter < this.mineCount; counter++) {
+            int row = random.nextInt(rowCount);
+            var column = random.nextInt(columnCount);
+
+            while (tiles[row][column] instanceof Mine) {
+                row = random.nextInt(rowCount);
+                column = random.nextInt(columnCount);
+            }
+
+            tiles[row][column] = new Mine();
+        }
     }
 
     private void fillWithClues() {
