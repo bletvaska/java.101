@@ -1,5 +1,7 @@
 package sk.tuke.mines.core;
 
+import java.util.Random;
+
 public class MineField {
     private final int rowCount;
 
@@ -16,6 +18,23 @@ public class MineField {
         this.columnCount = columnCount;
         this.mineCount = mineCount;
         tiles = new Tile[rowCount][columnCount];
+        generate();
+    }
+
+    private void generate() {
+        generateMines();
+        fillWithClues();
+    }
+
+    private void generateMines() {
+        var random = new Random();
+        var row = random.nextInt(rowCount);
+        var column = random.nextInt(columnCount);
+        tiles[row][column] = new Mine();
+    }
+
+    private void fillWithClues() {
+
     }
 
     public int getRowCount() {
@@ -32,5 +51,9 @@ public class MineField {
 
     public FieldState getState() {
         return state;
+    }
+
+    public Tile getTile(int row, int column) {
+        return tiles[row][column];
     }
 }
