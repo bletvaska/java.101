@@ -7,22 +7,19 @@ import sk.tuke.mines.core.Tile;
 
 public class Main {
     public static void main(String[] args) {
-        var field = new MineField(5, 4, 10);
+        var field = new MineField(1, 2, 1);
 
         renderField(field);
 
-        field.markTile(1, 2);
-
-        System.out.println("-----------------------------");
-        renderField(field);
-
-        field.markTile(1, 2);
+        field.openTile(0, 0);
 
         System.out.println("-----------------------------");
         renderField(field);
     }
 
     private static void renderField(MineField field) {
+        System.out.println(field.getState());
+
         for (var row = 0; row < field.getRowCount(); row++) {
             for (var column = 0; column < field.getColumnCount(); column++) {
                 Tile tile = field.getTile(row, column);

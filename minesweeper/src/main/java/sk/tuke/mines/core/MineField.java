@@ -13,6 +13,8 @@ public class MineField {
 
     private Tile[][] tiles;
 
+    private int openTilesCount;
+
     public MineField(int rowCount, int columnCount, int mineCount) {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
@@ -105,5 +107,51 @@ public class MineField {
             tile.setState(TileState.MARKED);
         else if (tile.getState() == TileState.MARKED)
             tile.setState(TileState.CLOSED);
+    }
+
+    public void openTile(int row, int column) {
+        var tile = tiles[row][column];
+        if (tile.getState() == TileState.CLOSED) {
+            tile.setState(TileState.OPEN);
+            openTilesCount++;
+
+            if (tile instanceof Mine) {
+                state = FieldState.FAILED;
+                return;
+            }
+
+            if (tile instanceof Clue && ((Clue) tile).getValue() == 0)
+                openNeighbourTiles(row, column);
+
+            if (isSolved())
+                state = FieldState.SOLVED;
+        }
+    }
+
+    private void openNeighbourTiles(int row, int column) {
+        if (row > 0) {
+            if (column > 0)
+                openTile(row - 1, column - 1);
+            openTile(row - 1, column);
+            if (column + 1 < columnCount)
+                openTile(row - 1, column + 1);
+        }
+
+        if (column > 0)
+            openTile(row, column - 1);
+        if (column + 1 < columnCount)
+            openTile(row, column + 1);;
+
+        if (row + 1 < rowCount) {
+            if (column > 0)
+                openTile(row + 1, column - 1);
+            openTile(row + 1, column);
+            if (column + 1 < columnCount)
+                openTile(row + 1, column + 1);
+        }
+    }
+
+    private boolean isSolved() {
+        return rowCount * columnCount - mineCount == openTilesCount;
     }
 }
