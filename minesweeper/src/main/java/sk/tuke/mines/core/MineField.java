@@ -98,4 +98,12 @@ public class MineField {
     public Tile getTile(int row, int column) {
         return tiles[row][column];
     }
+
+    public void markTile(int row, int column) {
+        var tile = tiles[row][column];
+        if (tile.getState() == TileState.CLOSED)
+            tile.setState(TileState.MARKED);
+        else if (tile.getState() == TileState.MARKED)
+            tile.setState(TileState.CLOSED);
+    }
 }
