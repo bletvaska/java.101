@@ -27,23 +27,56 @@ public class MineField {
     }
 
     private void generateMines() {
-        Random random = new Random();
+        var random = new Random();
 
-        for (int counter = 0; counter < this.mineCount; counter++) {
-            int row = random.nextInt(rowCount);
+        var minesStored = 0;
+        while (minesStored < this.mineCount) {
+            var row = random.nextInt(rowCount);
             var column = random.nextInt(columnCount);
 
-            while (tiles[row][column] instanceof Mine) {
-                row = random.nextInt(rowCount);
-                column = random.nextInt(columnCount);
+            if (tiles[row][column] == null) {
+                tiles[row][column] = new Mine();
+                minesStored++;
             }
-
-            tiles[row][column] = new Mine();
         }
     }
 
     private void fillWithClues() {
+        for (var row = 0; row < rowCount; row++) {
+            for (var column = 0; column < columnCount; column++) {
+                if (tiles[row][column] == null)
+                    tiles[row][column] = new Clue(countNeighboursMines(row, column));
+            }
+        }
+    }
 
+    private int countNeighboursMines(int row, int column) {
+        var mines = 0;
+
+        if (row > 0) {
+            if (column > 0 && tiles[row - 1][column - 1] instanceof Mine)
+                mines++;
+            if (tiles[row - 1][column] instanceof Mine)
+                mines++;
+            if (column + 1 < columnCount && tiles[row - 1][column + 1] instanceof Mine)
+                mines++;
+        }
+
+        if (column > 0 && tiles[row][column - 1] instanceof Mine)
+            mines++;
+        if (column + 1 < columnCount && tiles[row][column + 1] instanceof Mine)
+            mines++;
+
+        if (row + 1 < rowCount) {
+            if (column > 0 && tiles[row + 1][column - 1] instanceof Mine)
+                mines++;
+            if (tiles[row + 1][column] instanceof Mine)
+                mines++;
+            if (column + 1 < columnCount && tiles[row + 1][column + 1] instanceof Mine)
+                mines++;
+        }
+
+        return mines;
     }
 
     public int getRowCount() {
