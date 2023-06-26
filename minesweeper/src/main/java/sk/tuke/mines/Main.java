@@ -25,14 +25,16 @@ public class Main {
     private static void renderField(MineField field) {
         for (var row = 0; row < field.getRowCount(); row++) {
             for (var column = 0; column < field.getColumnCount(); column++) {
-                var tile = field.getTile(row, column);
+                Tile tile = field.getTile(row, column);
 
                 switch (tile.getState()) {
                     case OPEN:
                         if (tile instanceof Mine)
                             System.out.print("X");
-                        else if (tile instanceof Clue)
-                            System.out.print(((Clue) tile).getValue());
+                        else if (tile instanceof Clue) {
+                            Clue clue = ((Clue) tile);
+                            System.out.print(clue.getValue());
+                        }
                         break;
                     case MARKED:
                         System.out.print("M");
