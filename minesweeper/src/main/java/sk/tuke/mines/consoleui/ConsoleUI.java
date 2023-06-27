@@ -18,11 +18,11 @@ public class ConsoleUI {
     public void play() {
         this.isPlaying = true;
 
-        do{
+        do {
             renderField();
             processInput();
-        }while(this.isPlaying && this.mineField.getState() == FieldState.PLAYING);
-        
+        } while (this.isPlaying && this.mineField.getState() == FieldState.PLAYING);
+
         renderField();
     }
 
@@ -32,23 +32,28 @@ public class ConsoleUI {
         String[] input = scanner.nextLine().trim().toLowerCase().split(" ");
 
         // parse input
-        switch(input[0]){
+        switch (input[0]) {
             case "koniec": {
                 this.isPlaying = false;
                 break;
             }
 
             case "oznac": {
-                int row = Integer.valueOf(input[1]);
-                int column = Integer.valueOf(input[2]);
-                this.mineField.markTile(row, column);
+                int row = Integer.valueOf(input[1]) - 1;
+                int column = Integer.valueOf(input[2]) - 1;
+                if (isInputValid(row, column)) {
+                    this.mineField.markTile(row, column);
+                }
+
                 break;
             }
 
             case "otvor": {
-                int row = Integer.valueOf(input[1]);
-                int column = Integer.valueOf(input[2]);
-                this.mineField.openTile(row, column);
+                int row = Integer.valueOf(input[1]) - 1;
+                int column = Integer.valueOf(input[2]) - 1;
+                if (isInputValid(row, column)) {
+                    this.mineField.openTile(row, column);
+                }
                 break;
             }
 
@@ -56,7 +61,18 @@ public class ConsoleUI {
                 System.out.println("Taký príkaz nepoznám.");
             }
         }
+    }
 
+    private boolean isInputValid(int row, int column) {
+        if ((row >= 0 && row < this.mineField.getRowCount())
+                && (column >= 0 && column < this.mineField.getColumnCount())
+        ) {
+            return true;
+        }
+
+        // else
+        System.out.println("Zlý vstup.");
+        return false;
     }
 
     private void renderField() {
