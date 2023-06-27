@@ -9,8 +9,12 @@ public class ConsoleUI {
 
     private MineField mineField;
 
-    public ConsoleUI(MineField mineField){
+    public ConsoleUI(MineField mineField) {
         this.mineField = mineField;
+    }
+
+    public void play() {
+        renderField();
     }
 
     private void renderField() {
