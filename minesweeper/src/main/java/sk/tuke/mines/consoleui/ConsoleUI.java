@@ -1,9 +1,6 @@
 package sk.tuke.mines.consoleui;
 
-import sk.tuke.mines.core.Clue;
-import sk.tuke.mines.core.Mine;
-import sk.tuke.mines.core.MineField;
-import sk.tuke.mines.core.Tile;
+import sk.tuke.mines.core.*;
 
 import java.util.Scanner;
 
@@ -24,7 +21,9 @@ public class ConsoleUI {
         do{
             renderField();
             processInput();
-        }while(this.isPlaying);
+        }while(this.isPlaying && this.mineField.getState() == FieldState.PLAYING);
+        
+        renderField();
     }
 
     private void processInput() {
@@ -34,12 +33,28 @@ public class ConsoleUI {
 
         // parse input
         switch(input[0]){
-            case "koniec":
+            case "koniec": {
                 this.isPlaying = false;
                 break;
+            }
 
-            default:
+            case "oznac": {
+                int row = Integer.valueOf(input[1]);
+                int column = Integer.valueOf(input[2]);
+                this.mineField.markTile(row, column);
+                break;
+            }
+
+            case "otvor": {
+                int row = Integer.valueOf(input[1]);
+                int column = Integer.valueOf(input[2]);
+                this.mineField.openTile(row, column);
+                break;
+            }
+
+            default: {
                 System.out.println("Taký príkaz nepoznám.");
+            }
         }
 
     }
