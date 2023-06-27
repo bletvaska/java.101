@@ -140,7 +140,7 @@ public class MineField {
         if (column > 0)
             openTile(row, column - 1);
         if (column + 1 < columnCount)
-            openTile(row, column + 1);;
+            openTile(row, column + 1);
 
         if (row + 1 < rowCount) {
             if (column > 0)

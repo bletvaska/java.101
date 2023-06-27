@@ -1,13 +1,12 @@
 package sk.tuke.mines;
 
-import sk.tuke.mines.core.Clue;
-import sk.tuke.mines.core.Mine;
-import sk.tuke.mines.core.MineField;
-import sk.tuke.mines.core.Tile;
+import sk.tuke.mines.core.*;
 
 public class Main {
     public static void main(String[] args) {
-        var field = new MineField(1, 2, 1);
+        var field = new MineField(10, 10, 1);
+
+        var tile = new Clue(5);
 
         renderField(field);
 

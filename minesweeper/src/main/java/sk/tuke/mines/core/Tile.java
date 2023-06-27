@@ -7,7 +7,7 @@ public abstract class Tile {
         return state;
     }
 
-    public void setState(TileState state) {
+    void setState(TileState state) {
         this.state = state;
     }
 }
