@@ -4,6 +4,7 @@ import sk.tuke.mines.core.*;
 
 public class Main {
     public static void main(String[] args) {
+
         var field = new MineField(10, 10, 1);
 
         var tile = new Clue(5);
