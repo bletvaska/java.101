@@ -9,6 +9,7 @@ public class ConsoleUI {
     private MineField mineField;
     private Scanner scanner;
     private boolean isPlaying;
+    private int attempts;
 
     public ConsoleUI(MineField mineField) {
         this.mineField = mineField;
@@ -17,6 +18,7 @@ public class ConsoleUI {
 
     public void play() {
         this.isPlaying = true;
+        this.attempts = 0;
 
         do {
             renderField();
@@ -53,6 +55,7 @@ public class ConsoleUI {
                 int column = Integer.valueOf(input[2]) - 1;
                 if (isInputValid(row, column)) {
                     this.mineField.openTile(row, column);
+                    this.attempts++;
                 }
                 break;
             }
@@ -82,8 +85,14 @@ public class ConsoleUI {
     }
 
     private void renderField() {
-        System.out.println(this.mineField.getState());
+        // render header
+        String header = String.format(
+                "attempts: %02d state: %s",
+                this.attempts, this.mineField.getState()
+        );
+        System.out.println(header);
 
+        // render field
         for (var row = 0; row < this.mineField.getRowCount(); row++) {
             for (var column = 0; column < this.mineField.getColumnCount(); column++) {
                 Tile tile = this.mineField.getTile(row, column);
