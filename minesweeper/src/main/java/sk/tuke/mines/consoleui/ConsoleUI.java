@@ -28,13 +28,18 @@ public class ConsoleUI {
     }
 
     private void processInput() {
+        // prompt, read and normalize input
         System.out.print("Zadaj príkaz: ");
-        String[] input = scanner.nextLine().trim().split(" ");
-//        System.out.println(String.format("Prikaz: '%s', '%s'", input[0], input[1]));
+        String[] input = scanner.nextLine().trim().toLowerCase().split(" ");
 
         // parse input
-        if(input[0].equals("koniec")){
-            this.isPlaying = false;
+        switch(input[0]){
+            case "koniec":
+                this.isPlaying = false;
+                break;
+
+            default:
+                System.out.println("Taký príkaz nepoznám.");
         }
 
     }
