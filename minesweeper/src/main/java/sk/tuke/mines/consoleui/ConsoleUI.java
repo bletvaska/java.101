@@ -64,15 +64,21 @@ public class ConsoleUI {
     }
 
     private boolean isInputValid(int row, int column) {
-        if ((row >= 0 && row < this.mineField.getRowCount())
-                && (column >= 0 && column < this.mineField.getColumnCount())
-        ) {
-            return true;
+        boolean isValid = true;
+
+        // check valid row
+        if (!(row >= 0 && row < this.mineField.getRowCount())) {
+            System.out.println("Nesprávny riadok.");
+            isValid = false;
         }
 
-        // else
-        System.out.println("Zlý vstup.");
-        return false;
+        // check valid column
+        if (!(column >= 0 && column < this.mineField.getColumnCount())) {
+            isValid = false;
+            System.out.println("Nesprávny stĺpec.");
+        }
+
+        return isValid;
     }
 
     private void renderField() {
