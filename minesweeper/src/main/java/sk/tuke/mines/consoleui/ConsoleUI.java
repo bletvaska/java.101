@@ -11,6 +11,7 @@ public class ConsoleUI {
 
     private MineField mineField;
     private Scanner scanner;
+    private boolean isPlaying;
 
     public ConsoleUI(MineField mineField) {
         this.mineField = mineField;
@@ -18,7 +19,24 @@ public class ConsoleUI {
     }
 
     public void play() {
-        renderField();
+        this.isPlaying = true;
+
+        do{
+            renderField();
+            processInput();
+        }while(this.isPlaying);
+    }
+
+    private void processInput() {
+        System.out.print("Zadaj príkaz: ");
+        String[] input = scanner.nextLine().trim().split(" ");
+//        System.out.println(String.format("Prikaz: '%s', '%s'", input[0], input[1]));
+
+        // parse input
+        if(input[0].equals("koniec")){
+            this.isPlaying = false;
+        }
+
     }
 
     private void renderField() {
