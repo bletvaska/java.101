@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ruleset name="Java Bootcamp Rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+
+    <description>
+        This ruleset is for checking of nasty stuff in student's project code.
+    </description>
+
+
+    <!-- Here are some rules we'll specify one at a time -->
+
+    <!-- Java Error Prone Rules Category -->
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock"
+          message="Nepouzívajte príkaz ''return'' vo vnútri bloku ''finally''."/>
+    <rule ref="category/java/errorprone.xml/UnconditionalIfStatement"
+          message="Nepouzívajte príkazy ''if'', ktoré sú vzdy pravdivé alebo vzdy nepravdivé (lebo tento je taký)."/>
+    <rule ref="category/java/errorprone.xml/AssignmentInOperand"
+          message="Nepouzívajte priradenie hodnoty premenným, ktoré vystupujú ako operandy inej operácie (napr. 'if ((x = getX()) != 3)')."/>
+    <rule ref="category/java/errorprone.xml/NonCaseLabelInSwitchStatement"
+          message="V príkaze ''switch'' nepouzívajte znacky bez kľúcového slova ''case''. Bud dopíšte ''case '' pred túto znacku, alebo ju úplne vyhodte."/>
+    <rule ref="category/java/errorprone.xml/EqualsNull"
+          message="Nepouzívajte volanie ''obj.equals(null)'', ale klasické porovnanie (''obj == null'')."/>
+    <rule ref="category/java/errorprone.xml/IdempotentOperations"
+          message="Nepoužívajte idempotentné operácie (ako napr. priradenie premennej samej sebe)."/>
+    <rule ref="category/java/errorprone.xml/AssignmentToNonFinalStatic"
+          message="Bud deklarujte statickú premennú ''{0}'' ako final, alebo sa vyhnite priradeniu jej hodnoty v konštruktore."/>
+    <rule ref="category/java/errorprone.xml/MissingStaticMethodInNonInstantiatableClass"
+          message="Do triedy doplňte buď verejný konštruktor alebo statické metódy, pretože teraz je táto trieda nepouziteľná."/>
+    <rule ref="category/java/errorprone.xml/AvoidInstanceofChecksInCatchClause"
+          message="Pri odchytení výnimky nepouzívajte operátor ''instanceof'' na zistenie, o akú výnimku ide. Radšej umiestnite kazdý typ výnimky do samostatného bloku ''catch''."/>
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock"
+          message="Vlozte nejaký príkaz na ošetrenie výnimky."/>
+    <rule ref="category/java/errorprone.xml/EmptyIfStmt"
+          message="Vyhnite sa prázdnym ''if'' príkazom (ak však máte napísaný kód iba pre negáciu tejto prázdnej podmienky - cez ''else'', tak túto podmienku radšej negujte takto: ''!(POVODNA_PODMIENKA)'' a presuňte kód tam)."/>
+    <rule ref="category/java/errorprone.xml/EmptyWhileStmt"
+          message="Vyhnite sa prázdnym ''while'' cyklom (v prípade, ze v podmienke robíte nieco uzitocné, presuňte to radšej do tela cyklu)."/>
+    <rule ref="category/java/errorprone.xml/EmptyTryBlock"
+          message="Vyhnite sa prázdnym ''try'' blokom (zmazte ho)."/>
+    <rule ref="category/java/errorprone.xml/EmptyFinallyBlock"
+          message="Vyhnite sa prázdnym ''finally'' blokom (zmazte ho alebo doplňte nejaký kód)."/>
+    <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop"
+          message="Zmazte prázdny príkaz (bodkociarka navyše, alebo osamote)."/>
+    <rule ref="category/java/errorprone.xml/TestClassWithoutTestCases"
+          message="Triedy, ktorých názov koncí na 'Test' sú chápané ako testovacie triedy. Táto trieda však neobahuje ziadne testovacie prípady (metódy zacínajúce na 'test')."/>
+    <rule ref="category/java/errorprone.xml/UnnecessaryBooleanAssertion"
+          message="Vymazte nepotrebný predpoklad: príkaz 'assertTrue(true)' alebo jemu podobný."/>
+    <rule ref="category/java/errorprone.xml/JUnitStaticSuite"
+          message="Metóda 'suite()' nie je verejná a statická zároveň, teda ju JUnit nebude akceptovat. Pridajte preto modifikátory ''public'' a ''static''."/>
+    <rule ref="category/java/errorprone.xml/JUnitSpelling"
+          message="Nesprávne ste napísali názov metódy frameworku JUnit ('setUp' alebo 'tearDown')."/>
+    <rule ref="category/java/errorprone.xml/MethodWithSameNameAsEnclosingClass"
+          message="Trieda by nemala obsahovat metódy s rovnakým názvom ako názov triedy (okrem konštruktorov)."/>
+    <rule ref="category/java/errorprone.xml/SuspiciousHashcodeMethodName"
+          message="Názov metódy a jej návratový typ sa az príliš podobajú štandardnej metóde všetkých objektov s názvom 'hashCode()'. Bud ju takto pomenujte (cím pretazíte pôvodnú metódu), alebo lepšie zmeňte jej signatúru (stací názov)."/>
+    <rule ref="category/java/errorprone.xml/SuspiciousEqualsMethodName"
+          message="Názov metódy, prípadne typ parametra sa az príliš podobajú na štandardnú metódu pre všetky objekty s názvom 'equals(Object)'. Bud ju takto pomenujte (cím pretazíte pôvodnú metódu), alebo lepšie zmeňte jej signatúru (stací názov)."/>
+    <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingTypeName"
+          message="Zmeňte pomenovanie dátového clena, aby sa nezhodoval s názvom triedy."/>
+    <rule ref="category/java/errorprone.xml/AvoidFieldNameMatchingMethodName"
+          message="Zmeňte pomenovanie dátového clena, aby sa nezhodoval s názvom metódy."/>
+    <rule ref="category/java/errorprone.xml/DoNotThrowExceptionInFinally"
+          message="Nehádzte výnimky v bloku 'finally'."/>
+    <rule ref="category/java/errorprone.xml/AvoidCatchingThrowable"
+          message="Nepouzívajte odchytávanie výnimiek typu 'Throwable'."/>
+    <rule ref="category/java/errorprone.xml/AvoidCatchingNPE"
+          message="Nepouzívajte odchytávanie výnimky typu 'NullPointerException'; radšej skúste predíst tejto výnimke dodatocnou kontrolou."/>
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals"
+          message="Retazec {0} sa vyskytuje {1}-krát (viac ako 3; prvý výskyt: riadok {2}); deklarujte ho ako dátový clen typu ''final static String'' a pouzite takto definovanú premennú v kazdom výskyte retazca."/>
+    <rule ref="category/java/errorprone.xml/UnnecessaryCaseChange"
+          message="Volanie metódy ''equalsIgnoreCase()'' je lepšie ako volanie ''toUpperCase/toLowerCase().equals()''."/>
+    <rule ref="category/java/errorprone.xml/UseEqualsToCompareStrings"
+          message="Pri porovnávaní retazcov volajte metódu ''equals()'' miesto pouzitia operátorov  ''=='', prípadne ''!=''."/>
+    <rule ref="category/java/errorprone.xml/UnnecessaryConversionTemporary"
+          message="Nepouzívajte docasnú premennú pri konvertovaní nejakého objektu na retazec (''String''). Stací túto konverziu napísat rovno za príkaz ''return''."/>
+    <!--    <rule ref="category/java/errorprone.xml/SuspiciousConstantFieldName"-->
+    <!--          message="Názov premennej nesmie byt zlozený len z veľkých písmen, ak sa nejedná o konštantu. Avšak ak ide o konštantu, deklarujte premennú ako ''final''."/>-->
+    <!--    <rule ref="category/java/errorprone.xml/UseAssertNullInsteadOfAssertTrue"-->
+    <!--          message="Miesto príkazu 'assertTrue(x==null)', príp. 'assertFalse(x==null)', pouzite príkaz 'assertNull(x)', príp. 'assertNotNull(x)'."/>-->
+    <!--    <rule ref="category/java/errorprone.xml/SimplifyBooleanAssertion"-->
+    <!--          message="Príkaz 'assertTrue(!výraz)' nahradte lepším: 'assertFalse(výraz)'."/>-->
+    <!--    <rule ref="category/java/errorprone.xml/ImportFromSamePackage"-->
+    <!--          message="Neimportujte nic, co sa nachádza v tom istom balícku."/>-->
+    <!--    <rule ref="category/java/errorprone.xml/MissingBreakInSwitch"-->
+    <!--          message="V celom príkaze ''switch'' sa nenachádza ziadny príkaz ''break''."/>-->
+
+
+    <!-- Java Design Rules Category -->
+    <rule ref="category/java/design.xml/CollapsibleIfStatements"
+          message="Spojte nasledujúce dva za sebou idúce ''if'' príkazy do jedného (podmienky zlúcite logickým operátorom &amp;&amp;)"/>
+    <rule ref="category/java/design.xml/ExcessiveMethodLength"
+          message="Metóda obsahuje viac ako 99 príkazov. Skúste redukovat jej veľkost vytvorením pomocných metód."/>
+    <rule ref="category/java/design.xml/ExcessiveParameterList"
+          message="Nepouzívajte viac ako 9 parametrov metódy. Skúste tie parametre zapúzdrit do objektu, prípadne poľa."/>
+    <rule ref="category/java/design.xml/ExcessiveClassLength"
+          message="Obmedzte pocet metód/príkazov v triede. Trieda musí mat menej ako 1000 riadkov."/>
+    <rule ref="category/java/design.xml/ExcessivePublicCount"
+          message="Trieda nesmie mat viac ako 44 verejných dátových clenov/metód. Prehodnotte, ci trieda naozaj pokrýva funkcionalitu iba jedného aspektu/objektu reálneho sveta."/>
+    <rule ref="category/java/design.xml/CyclomaticComplexity"
+          showClassesComplexity="false"
+          message="Znížte počet: ''if'', ''while'', ''for'', ''case'' príkazov v rámci ''{0} {1}'' (zložitosť je {2} z 10)."/>
+    <rule ref="category/java/design.xml/TooManyFields"
+          message="Trieda by nemala mat viac ako 14 dátových clenov."/>
+    <rule ref="category/java/design.xml/TooManyMethods"
+          message="Trieda by nemala mat viac ako 15 metód."
+          maxmethods="15"/>
+    <rule ref="category/java/design.xml/CouplingBetweenObjects"
+          message="V triede by sa nemalo pouzívat príliš veľa rozdielnych typov (20 a viac: dátové cleny, premenné, ''return'' príkazy), lebo to indikuje vysoký 'coupling'."/>
+    <rule ref="category/java/design.xml/ExcessiveImports"
+          message="Znížte počet importov (nesmie ich byť viac ako 30)"/>
+    <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts"
+          message="Nepouzívajte viac ako dve vnorenia podmienky 'if..then'."/>
+    <rule ref="category/java/design.xml/SimplifyConditional"
+          message="Vymazte kontrolu premennej na ''null'', ked pouzívate operátor ''instanceof'' (napr. 'if (x != null &amp;&amp; x instanceof X)')."/>
+    <rule ref="category/java/design.xml/SingularField"
+          message="Nahradte dátový clen ''{0}'' lokálnou premennou, pretoze sa pouzíva len v jedinej metóde."/>
+    <rule ref="category/java/design.xml/AbstractClassWithoutAnyMethod"
+          message="V abstraktnej triede nie je ziadna abstraktná metóda - doplňte aspoň jednu. Ak ste mali v úmysle iba zabránit moznosti vytvorit inštanciu triedy, pouzite radšej súkromný alebo chránený konštruktor."/>
+    <rule ref="category/java/design.xml/ExceptionAsFlowControl"
+          message="Nepouzívajte volania a zachytávanie výnimiek na riadenie toku programu (teda umelý 'goto' príkaz)."/>
+    <rule ref="category/java/design.xml/AvoidThrowingNullPointerException"
+          message="Nehádzte výnimky typu 'NullPointerException', radšej miesto nej 'IllegalArgumentException'."/>
+    <rule ref="category/java/design.xml/AvoidRethrowingException"
+          message="Nehádzte tú istú výnimku v 'catch' bloku."/>
+    <rule ref="category/java/design.xml/AvoidThrowingNewInstanceOfSameException"
+          message="Nehádzte tú istú výnimku v 'catch' bloku (ani jej novú inštanciu)."/>
+    <rule ref="category/java/design.xml/UselessOverridingMethod"
+          message="Pretazenie metódy je zbytocné, pretoze nerobí nic, iba volá svojho predka."/>
+    <!--    <rule ref="category/java/design.xml/AvoidConstantsInterface"-->
+    <!--          message="Rozhranie musí obsahovat aj deklaráciu metód, nielen konštánt."/>-->
+
+
+    <!-- Java Best Practices Rules Category -->
+    <rule ref="category/java/bestpractices.xml/LooseCoupling"
+          message="Pretypujte deklaráciu (namiesto typu ''{0}'' pouzite rozhranie, ktoré tento typ implementuje)."/>
+    <rule ref="category/java/bestpractices.xml/SwitchStmtsShouldHaveDefault"
+          message="Pridajte do príkazu ''switch'' aj ''default:'' znacku."/>
+    <rule ref="category/java/bestpractices.xml/AvoidReassigningParameters"
+          message="Vyhnite sa priradeniam hodnoty do parametra ''{0}'' - radšej si vytvorte novú lokálnu premennú."/>
+    <rule ref="category/java/bestpractices.xml/DefaultLabelNotLastInSwitchStmt"
+          message="Umiestnite znacku ''default:'' v príkaze ''switch'' ako poslednú."/>
+    <rule ref="category/java/bestpractices.xml/UseCollectionIsEmpty"
+          message="Nahradte test 'obj.size() == 0' (príp. 'obj.size() != 0') volaním metódy 'obj.isEmpty()' na príslušnom objekte (kolekcii)."/>
+    <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage"
+          message="JUnit predpoklady (assertions) by mali mat ako prvý parameter nejakú textovú správu."/>
+    <rule ref="category/java/bestpractices.xml/JUnitTestsShouldIncludeAssert"
+          message="JUnit testy by mali obsahovat aspoň jedno volanie metódy 'assert()' alebo 'fail()'."/>
+    <rule ref="category/java/bestpractices.xml/UnusedLocalVariable"
+          message="Vymazte nepouzitú lokálnu premennú ''{0}''."/>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateField"
+          message="Vymazte nepouzitý dátový clen ''{0}''."/>
+    <rule ref="category/java/bestpractices.xml/UnusedPrivateMethod"
+          message="Vymazte nepouzitú (ani raz nikde nevolanú) súkromnú metódu: ''{0}''."/>
+    <rule ref="category/java/bestpractices.xml/UnusedFormalParameter"
+          message="Vymazte nepouzitý(é) parameter(tre) ''{1}'' v mieste: {0}."/>
+    <!--    <rule ref="category/java/bestpractices.xml/UnusedImports"-->
+    <!--          message="Odstráňte tento nepouzitý import: ''{0}''."/>-->
+
+
+    <!-- Java Code Style Rules Category -->
+    <rule ref="category/java/codestyle.xml/UnnecessaryLocalBeforeReturn"
+          message="Vyhnite sa vytváraniu zbytocných lokálnych premenných, ako je napr. táto: ''int x = getX(); return x;''."/>
+    <rule ref="category/java/codestyle.xml/EmptyMethodInAbstractClassShouldBeAbstract"
+          message="Prázdna metóda v abstraktnej triede by mala byt abstraktná (doplňte kľúcové slovo ''abstract'' za modifikátor viditeľnosti a zmazte telo metódy)."/>
+    <rule ref="category/java/codestyle.xml/LongVariable"
+          message="Názov premennej ''{0}'' je príliš dlhý (musí mat menej ako 17 znakov)."/>
+    <rule ref="category/java/codestyle.xml/ShortMethodName"
+          message="Názov metódy je príliš krátky (musí mat viac ako 2 znaky)."/>
+    <rule ref="category/java/codestyle.xml/MethodNamingConventions"
+          message="Názov metódy by mal vzdy zacínat malým písmenom, a nemal by obsahovat podtrzníky (_)."/>
+    <rule ref="category/java/codestyle.xml/ClassNamingConventions"
+          message="Názov triedy by mal vzdy zacínat veľkým písmenom."/>
+    <rule ref="category/java/codestyle.xml/AvoidDollarSigns"
+          message="Nepouzívajte symbol dolára v názve premennej/metódy/triedy/rozhrania."/>
+    <rule ref="category/java/codestyle.xml/NoPackage"
+          message="Doplňte názov balícka na zaciatok súboru triedy/rozhrania (vlozte riadok ''package názov'', kde názov je cesta adresárov, v ktorých sa trieda/rozhranie nachádza)."/>
+    <rule ref="category/java/codestyle.xml/PackageCase"
+          message="Názov balícka nesmie obsahovat veľké písmená."/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn"
+          message="Vymazte tento nepotrebný ''return'' príkaz."/>
+    <rule ref="category/java/codestyle.xml/BooleanGetMethodName"/>
+    <!--    <rule ref="category/java/codestyle.xml/MisleadingVariableName"-->
+    <!--          message="Vymazte z premennej prefix 'm_' (tento sa väcšinou pouzíva len ako prefix pre názvy dátových clenov)."/>-->
+    <!--    <rule ref="category/java/codestyle.xml/AbstractNaming"-->
+    <!--          message="Názov abstraktných tried by mal mat formu: 'AbstractXXX'."/>-->
+    <!--    <rule ref="category/java/codestyle.xml/VariableNamingConventions"-->
+    <!--          message="{0} premenná ''{1}'' musí zacínat {2}."/>-->
+    <!--    <rule ref="category/java/codestyle.xml/DontImportJavaLang"-->
+    <!--          message="Neimportujte nic z balícka 'java.lang' (všetky triedy z tohto balícka sú importované automaticky)."/>-->
+    <!--    <rule ref="category/java/codestyle.xml/DuplicateImports"-->
+    <!--          message="Vymazte tento duplicitný import: ''{0}''."/>-->
+    <!--    <rule ref="category/java/codestyle.xml/UnnecessaryWrapperObjectCreation"-->
+    <!--          message="Táto typová konverzia sa dá zoptimalizovat ak vynecháte pomocný objekt, ktorý si vytvárate (napr. 'i = Integer.valueOf(s).intValue();' - toto vytvára zbytocný objekt; 'i = Integer.parseInt(s);' - toto je uz lepšie)."/>-->
+
+
+    <!-- Java Performance Rules Category -->
+    <rule ref="category/java/performance.xml/TooFewBranchesForASwitchStatement"
+          message="Príkaz ''switch'' s menej ako 3 vetvami je neefektívny. Radšej ho zameňte za príkazy ''if''."/>
+    <rule ref="category/java/performance.xml/AddEmptyString"
+          message="Na konverziu nepridávajte prázdny retazec (je to neefektívne, radšej to urobte cez volanie ''String.valueOf()'')."/>
+    <rule ref="category/java/performance.xml/UselessStringValueOf"
+          message="Nie je potrebné volat ''String.valueOf()'' na konverziu, ak tento objekt chcete pridat k retazcu."/>
+    <rule ref="category/java/performance.xml/StringInstantiation"
+          message="Nevytvárajte inštanciu objektu String priamo (''new String()''); obyčajne je to zbytocné."/>
+    <rule ref="category/java/performance.xml/StringToString"
+          message="Nepoužívajte volanie ''toString()'' metódy na objektoch typu 'String'."/>
+    <rule ref="category/java/performance.xml/UseIndexOfChar"
+          message="Miesto 'String.indexOf(''retazec'')' použite 'String.indexOf('znak')'."/>
+</ruleset>
+

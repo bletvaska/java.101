@@ -31,7 +31,7 @@ public class ConsoleUI {
     private void processInput() {
         // prompt, read and normalize input
         System.out.print("Zadaj príkaz: ");
-        String[] input = scanner.nextLine().trim().toLowerCase().split(" ");
+        var input = scanner.nextLine().trim().toLowerCase().split(" ");
 
         // parse input
         switch (input[0]) {
@@ -72,13 +72,14 @@ public class ConsoleUI {
         // check valid row
         if (!(row >= 0 && row < this.mineField.getRowCount())) {
             System.out.println("Nesprávny riadok.");
-            isValid = false;
+            return false;
         }
 
         // check valid column
         if (!(column >= 0 && column < this.mineField.getColumnCount())) {
             isValid = false;
             System.out.println("Nesprávny stĺpec.");
+            return false;
         }
 
         return isValid;
@@ -86,35 +87,38 @@ public class ConsoleUI {
 
     private void renderField() {
         // render header
-        String header = String.format(
+        var header = String.format(
                 "attempts: %02d state: %s",
                 this.attempts, this.mineField.getState()
         );
         System.out.println(header);
 
-        // render field
+        // render rows and columns
         for (var row = 0; row < this.mineField.getRowCount(); row++) {
             for (var column = 0; column < this.mineField.getColumnCount(); column++) {
-                Tile tile = this.mineField.getTile(row, column);
-
-                switch (tile.getState()) {
-                    case OPEN:
-                        if (tile instanceof Mine)
-                            System.out.print("X");
-                        else if (tile instanceof Clue) {
-                            Clue clue = ((Clue) tile);
-                            System.out.print(clue.getValue());
-                        }
-                        break;
-                    case MARKED:
-                        System.out.print("M");
-                        break;
-                    case CLOSED:
-                        System.out.print("-");
-                        break;
-                }
+                var tile = this.mineField.getTile(row, column);
+                renderTile(tile);
             }
             System.out.println();
+        }
+    }
+
+    private static void renderTile(Tile tile) {
+        switch (tile.getState()) {
+            case OPEN:
+                if (tile instanceof Mine)
+                    System.out.print("X");
+                else if (tile instanceof Clue) {
+                    Clue clue = ((Clue) tile);
+                    System.out.print(clue.getValue());
+                }
+                break;
+            case MARKED:
+                System.out.print("M");
+                break;
+            case CLOSED:
+                System.out.print("-");
+                break;
         }
     }
 }
