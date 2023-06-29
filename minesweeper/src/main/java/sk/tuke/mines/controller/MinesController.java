@@ -35,10 +35,28 @@ public class MinesController {
 
         renderControls(sb);
         renderField(sb);
+        renderState(sb);
 
         sb.append("</body>\n</html>\n");
 
         return sb.toString();
+    }
+
+    private void renderState(StringBuilder sb) {
+        switch (this.mineField.getState()) {
+            case SOLVED: {
+                sb.append("<p><b>Gratulujem. Vyhral si hru.</b></p>");
+                break;
+            }
+            case FAILED: {
+                sb.append("<p><b>Je mi to ľúto, ale našiel si mínu.</b></p>");
+                break;
+            }
+            default: {
+                // game continues
+                break;
+            }
+        }
     }
 
     private void renderControls(StringBuilder sb) {
@@ -54,7 +72,7 @@ public class MinesController {
             for (var column = 0; column < this.mineField.getColumnCount(); column++) {
                 var tile = this.mineField.getTile(row, column);
                 sb.append("<td class='" + getTileClass(tile) + "'>\n");
-                if(this.mineField.getState() == FieldState.PLAYING) {
+                if (this.mineField.getState() == FieldState.PLAYING) {
                     sb.append(String.format("<a href='/act?row=%d&column=%d'>\n", row, column));
                 }
                 sb.append("<span>" + getTileText(tile) + "</span>");
