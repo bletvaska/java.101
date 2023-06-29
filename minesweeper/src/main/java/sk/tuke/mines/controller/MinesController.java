@@ -14,16 +14,16 @@ public class MinesController {
     @GetMapping("/act")
     public String act(int row, int column) {
         mineField.openTile(row, column);
-        return renderField();
+        return render();
     }
 
     @GetMapping("/")
     public String newGame() {
         mineField = new MineField(9, 9, 10);
-        return renderField();
+        return render();
     }
 
-    private String renderField() {
+    private String render() {
         var sb = new StringBuilder();
 
         sb.append("<html>\n");
