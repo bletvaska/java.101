@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sk.tuke.mines.core.Clue;
+import sk.tuke.mines.core.FieldState;
 import sk.tuke.mines.core.MineField;
 import sk.tuke.mines.core.Tile;
 
@@ -53,7 +54,9 @@ public class MinesController {
             for (var column = 0; column < this.mineField.getColumnCount(); column++) {
                 var tile = this.mineField.getTile(row, column);
                 sb.append("<td class='" + getTileClass(tile) + "'>\n");
-                sb.append(String.format("<a href='/act?row=%d&column=%d'>\n", row, column));
+                if(this.mineField.getState() == FieldState.PLAYING) {
+                    sb.append(String.format("<a href='/act?row=%d&column=%d'>\n", row, column));
+                }
                 sb.append("<span>" + getTileText(tile) + "</span>");
                 sb.append("</a>\n");
                 sb.append("</td>\n");
