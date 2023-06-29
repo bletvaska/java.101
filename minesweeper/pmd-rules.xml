@@ -99,7 +99,6 @@
     <rule ref="category/java/design.xml/ExcessivePublicCount"
           message="Trieda nesmie mat viac ako 44 verejných dátových členov/metód. Prehodnoťte, ci trieda naozaj pokrýva funkcionalitu iba jedného aspektu/objektu reálneho sveta."/>
     <rule ref="category/java/design.xml/CyclomaticComplexity"
-          showClassesComplexity="false"
           message="Znížte počet: ''if'', ''while'', ''for'', ''case'' príkazov v rámci ''{0} {1}'' (zložitosť je {2} z 10)."/>
     <rule ref="category/java/design.xml/TooManyFields"
           message="Trieda by nemala mat viac ako 14 dátových členov."/>
