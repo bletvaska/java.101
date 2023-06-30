@@ -1,14 +1,16 @@
 package sk.tuke.mines.controller;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.WebApplicationContext;
 import sk.tuke.mines.core.Clue;
 import sk.tuke.mines.core.FieldState;
 import sk.tuke.mines.core.MineField;
 import sk.tuke.mines.core.Tile;
 
 @RestController
+@Scope(WebApplicationContext.SCOPE_SESSION)
 public class MinesController {
     private MineField mineField;
     private int rowCount;
