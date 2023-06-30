@@ -24,6 +24,25 @@ public class MinesController {
         return render();
     }
 
+    @GetMapping("/easy")
+    public String newEasyGame(){
+        mineField = new MineField(9, 9, 10);
+        return render();
+    }
+
+    @GetMapping("/medium")
+    public String newMediumGame(){
+        mineField = new MineField(9, 9, 10);
+        return render();
+    }
+
+    @GetMapping("/hard")
+    public String newHardGame(){
+        mineField = new MineField(9, 9, 10);
+        return render();
+    }
+
+
     private String render() {
         var sb = new StringBuilder();
 
@@ -61,7 +80,10 @@ public class MinesController {
 
     private void renderControls(StringBuilder sb) {
         sb.append("<div class='minesControl'>");
-        sb.append("<a href='/'>New Game</a>");
+        sb.append("<a href='/'>New Game</a><br>");
+        sb.append("<a href='/easy'>Easy</a><br>");
+        sb.append("<a href='/medium'>Medium</a><br>");
+        sb.append("<a href='/hard'>Hard</a>");
         sb.append("</div>");
     }
 
