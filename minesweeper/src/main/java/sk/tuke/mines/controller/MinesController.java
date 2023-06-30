@@ -11,6 +11,9 @@ import sk.tuke.mines.core.Tile;
 @RestController
 public class MinesController {
     private MineField mineField = new MineField(9, 9, 10);
+    private int rowCount;
+    private int columnCount;
+    private int mineCount;
 
     @GetMapping("/act")
     public String act(int row, int column) {
@@ -20,25 +23,37 @@ public class MinesController {
 
     @GetMapping("/")
     public String newGame() {
-        mineField = new MineField(9, 9, 10);
+        mineField = new MineField(this.rowCount, this.columnCount, this.mineCount);
         return render();
     }
 
     @GetMapping("/easy")
-    public String newEasyGame(){
-        mineField = new MineField(9, 9, 10);
+    public String newEasyGame() {
+        this.rowCount = 9;
+        this.columnCount = 9;
+        this.mineCount = 10;
+
+        mineField = new MineField(this.rowCount, this.columnCount, this.mineCount);
         return render();
     }
 
     @GetMapping("/medium")
-    public String newMediumGame(){
-        mineField = new MineField(9, 9, 10);
+    public String newMediumGame() {
+        this.rowCount = 16;
+        this.columnCount = 16;
+        this.mineCount = 40;
+
+        mineField = new MineField(this.rowCount, this.columnCount, this.mineCount);
         return render();
     }
 
     @GetMapping("/hard")
-    public String newHardGame(){
-        mineField = new MineField(9, 9, 10);
+    public String newHardGame() {
+        this.rowCount = 32;
+        this.columnCount = 32;
+        this.mineCount = 99;
+
+        mineField = new MineField(this.rowCount, this.columnCount, this.mineCount);
         return render();
     }
 
