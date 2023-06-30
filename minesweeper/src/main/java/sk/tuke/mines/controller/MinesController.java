@@ -10,20 +10,25 @@ import sk.tuke.mines.core.Tile;
 
 @RestController
 public class MinesController {
-    private MineField mineField = new MineField(9, 9, 10);
+    private MineField mineField;
     private int rowCount;
     private int columnCount;
     private int mineCount;
+    private boolean marking;
 
     public MinesController() {
-        this.rowCount = 9;
-        this.columnCount = 9;
-        this.mineCount = 10;
+//        this.marking = false;
+        createField(9, 9, 10);
     }
 
     @GetMapping("/act")
     public String act(int row, int column) {
-        mineField.openTile(row, column);
+        if (this.marking) {
+            mineField.markTile(row, column);
+        } else {
+            mineField.openTile(row, column);
+        }
+
         return render();
     }
 
@@ -32,6 +37,13 @@ public class MinesController {
         mineField = new MineField(this.rowCount, this.columnCount, this.mineCount);
         return render();
     }
+
+    @GetMapping("/changeMarking")
+    public String changeMarking() {
+        this.marking = !this.marking;
+        return render();
+    }
+
 
     @GetMapping("/easy")
     public String newEasyGame() {
@@ -51,7 +63,7 @@ public class MinesController {
         return render();
     }
 
-    private void createField(int rowCount, int columnCount, int mineCount){
+    private void createField(int rowCount, int columnCount, int mineCount) {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.mineCount = mineCount;
@@ -100,7 +112,8 @@ public class MinesController {
         sb.append("<a href='/'>New Game</a><br>");
         sb.append("<a href='/easy'>Easy</a><br>");
         sb.append("<a href='/medium'>Medium</a><br>");
-        sb.append("<a href='/hard'>Hard</a>");
+        sb.append("<a href='/hard'>Hard</a><br>");
+        sb.append("<a href='/changeMarking'>Mark/Open</a>");
         sb.append("</div>");
     }
 
