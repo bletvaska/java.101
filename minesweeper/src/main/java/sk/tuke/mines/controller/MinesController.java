@@ -113,7 +113,9 @@ public class MinesController {
         sb.append("<a href='/easy'>Easy</a><br>");
         sb.append("<a href='/medium'>Medium</a><br>");
         sb.append("<a href='/hard'>Hard</a><br>");
-        sb.append("<a href='/changeMarking'>Mark/Open</a>");
+
+        String text = this.marking ? "Mark" : "Open";
+        sb.append("<a href='/changeMarking'>Current state: " + text + "</a>");
         sb.append("</div>");
     }
 
